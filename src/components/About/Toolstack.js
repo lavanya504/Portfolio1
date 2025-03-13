@@ -1,30 +1,28 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import {
-  SiVisualstudiocode,
-  SiPostman,
-  SiSlack,
-  SiVercel,
-  SiMacos,
-} from "react-icons/si";
+import { SiVisualstudiocode } from "react-icons/si";
+import { DiEclipse } from "react-icons/di";
+import { SiMysql } from "react-icons/si";
+import { SiNotepadplusplus } from "react-icons/si";
+import { DiGit } from "react-icons/di"; // Added Git
 
 function Toolstack() {
   return (
     <Row style={{ justifyContent: "center", paddingBottom: "50px" }}>
       <Col xs={4} md={2} className="tech-icons">
-        <SiMacos />
+        <SiVisualstudiocode /> {/* VS Code */}
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiVisualstudiocode />
+        <DiEclipse /> {/* Eclipse */}
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiPostman />
+        <SiMysql /> {/* SQL Plus (MySQL) */}
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiSlack />
+        <SiNotepadplusplus /> {/* EditPlus (Closest available icon) */}
       </Col>
       <Col xs={4} md={2} className="tech-icons">
-        <SiVercel />
+        <DiGit /> {/* Git */}
       </Col>
     </Row>
   );

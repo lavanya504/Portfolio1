@@ -6,12 +6,7 @@ import About from "./components/About/About";
 import Projects from "./components/Projects/Projects";
 import Footer from "./components/Footer";
 import Resume from "./components/Resume/ResumeNew";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  Navigate
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import "./style.css";
 import "./App.css";
@@ -30,6 +25,7 @@ function App() {
 
   return (
     <Router>
+      <TitleUpdater /> {/* ✅ This will dynamically update the title */}
       <Preloader load={load} />
       <div className="App" id={load ? "no-scroll" : "scroll"}>
         <Navbar />
@@ -39,12 +35,28 @@ function App() {
           <Route path="/project" element={<Projects />} />
           <Route path="/about" element={<About />} />
           <Route path="/resume" element={<Resume />} />
-          <Route path="*" element={<Navigate to="/"/>} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
         <Footer />
       </div>
     </Router>
   );
+}
+
+// ✅ This component updates the document title based on the route
+function TitleUpdater() {
+  const location = useLocation();
+  useEffect(() => {
+    let title = "Lavanya | Portfolio"; // Default title
+    if (location.pathname === "/") title = "Home - Lavanya | Portfolio";
+    if (location.pathname === "/about") title = "About -Lavanya | Portfolio";
+    if (location.pathname === "/project") title = "Projects - Lavanya | Portfolio";
+    if (location.pathname === "/resume") title = "Resume - Lavanya | Portfolio";
+    
+    document.title = title; // ✅ Set document title dynamically
+  }, [location]);
+
+  return null;
 }
 
 export default App;
